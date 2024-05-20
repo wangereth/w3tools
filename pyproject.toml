@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "w3tools"
 version = "0.1.0"
-description = ""
+description = "w3tools is a Python library that provides a set of tools to enhance the development of Web3 applications"
 authors = ["wanger <wangereth@icloud.com>"]
 readme = "README.md"
 license = "MIT"
