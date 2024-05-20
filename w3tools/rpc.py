@@ -25,4 +25,8 @@ HTTP_PROVIDERS = {
         RPC_PROVIDER.DEFAULT: "https://bsc.llamarpc.com",
         RPC_PROVIDER.CHAINBASE: "https://bsc-mainnet.s.chainbase.online/v1/{}",
     },
+    ChainId.ARB: {
+        RPC_PROVIDER.DEFAULT: "https://arbitrum.llamarpc.com",
+        RPC_PROVIDER.CHAINBASE: "https://arbitrum-mainnet.s.chainbase.online/v1/{}",
+    },
 }
