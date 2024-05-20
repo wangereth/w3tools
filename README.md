@@ -29,3 +29,7 @@ pip install w3tools
 ## Credits
 
 - [Web3.py](https://github.com/ethereum/web3.py)
+
+## Development
+
+The project is still under development. Please feel free to contribute or report any issues and feature requests.
