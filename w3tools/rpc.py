@@ -8,6 +8,7 @@ class RPC_PROVIDER(Enum):
     ALCHEMY = "alchemy"
     CHAINBASE = "chainbase"
     DEFAULT = "default"
+    QUICKNODE = "quicknode"
 
     def __missing__(cls, key):
         if isinstance(key, str):
@@ -20,6 +21,7 @@ HTTP_PROVIDERS = {
         RPC_PROVIDER.INFURA: "https://mainnet.infura.io/v3/{}",
         RPC_PROVIDER.ALCHEMY: "https://eth-mainnet.alchemyapi.io/v2/{}",
         RPC_PROVIDER.CHAINBASE: "https://ethereum-mainnet.s.chainbase.online/v1/{}",
+        RPC_PROVIDER.QUICKNODE: "https://fittest-summer-pool.quiknode.pro/{}",
     },
     ChainId.BSC: {
         RPC_PROVIDER.DEFAULT: "https://bsc.llamarpc.com",
