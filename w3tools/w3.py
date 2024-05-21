@@ -42,7 +42,7 @@ def debug_middle(make_request, w3):
 
 def make_w3(
     chain: ChainId,
-    provider="default",
+    provider: RPC_PROVIDER | str = "default",
     endpoint=None,
     api_key=None,
     rate_limit=None,
@@ -64,7 +64,8 @@ def make_w3(
         if not endpoint:
             raise ValueError("endpoint must be provided when provider is custom")
     else:
-        provider = RPC_PROVIDER(provider)
+        if isinstance(provider, str):
+            provider = RPC_PROVIDER(provider)
         endpoint = HTTP_PROVIDERS[chain][provider].format(api_key)
     w3 = Web3(Web3.HTTPProvider(endpoint))
     # add poa middleware for bsc
