@@ -5,6 +5,7 @@ w3tools is a Python library that provides a set of tools to enhance the developm
 1. Web3 RPC client for popular EVM-based blockchains supporting:
    - popular RPC providers, like Infura, Alchemy, etc.
    - multiple EVM-based blockchains, like Ethereum, Binance Smart Chain, etc.
+   - Websocket and HTTP RPC
    - rate limiting and retrying
    - skip validation of RPC method parameters
    - debug mode
