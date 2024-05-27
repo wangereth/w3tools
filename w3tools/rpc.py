@@ -36,6 +36,7 @@ HTTP_PROVIDERS = {
     ChainId.ETH_SEPOLIA: {
         RPC_PROVIDER.DEFAULT: "https://rpc.sepolia.org",
         RPC_PROVIDER.INFURA: "https://sepolia.infura.io/v3/{}",
+        RPC_PROVIDER.ALCHEMY: "https://eth-sepolia.g.alchemy.com/v2/{}",
     },
 }
 
@@ -59,5 +60,6 @@ WS_PROVIDERS = {
     ChainId.ETH_SEPOLIA: {
         RPC_PROVIDER.DEFAULT: "wss://rpc.sepolia.org",
         RPC_PROVIDER.INFURA: "wss://sepolia.infura.io/ws/v3/{}",
+        RPC_PROVIDER.ALCHEMY: "wss://eth-sepolia.g.alchemy.com/v2/{}",
     },
 }
