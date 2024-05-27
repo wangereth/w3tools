@@ -23,7 +23,16 @@ pip install w3tools
 ## Usage
 
 ```python
+from w3tools.chain import ChainId
+from w3tools.w3 import make_w3
 
+w3 = make_w3(
+    ChainId.ETH,
+    "quicknode",
+    api_key="your key",
+)
+
+print(w3.eth.block_number)
 ```
 
 ## Credits

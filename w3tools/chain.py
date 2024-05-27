@@ -111,6 +111,9 @@ class ChainId(IntEnum):
     PALM = 11297108109
     CURIO = 836542336838601
 
+    # testnets
+    ETH_SEPOLIA = 11155111
+
     @classmethod
     def _missing_(cls, key):
         if isinstance(key, str):

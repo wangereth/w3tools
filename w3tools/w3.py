@@ -1,3 +1,5 @@
+import asyncio
+import json
 import logging
 import time
 
@@ -12,9 +14,10 @@ from web3._utils.method_formatters import (
 from web3._utils.rpc_abi import RPC
 from web3.method import Method, default_root_munger
 from web3.middleware import geth_poa_middleware, simple_cache_middleware, validation
+from websockets import connect
 
 from w3tools.chain import ChainId
-from w3tools.rpc import HTTP_PROVIDERS, RPC_PROVIDER
+from w3tools.rpc import HTTP_PROVIDERS, RPC_PROVIDER, WS_PROVIDERS
 
 # disable rate limiter logger
 logging.getLogger("pyrate_limiter").setLevel(logging.WARNING)
@@ -44,7 +47,7 @@ def make_w3(
     chain: ChainId,
     provider: RPC_PROVIDER | str = "default",
     endpoint=None,
-    api_key=None,
+    api_key="",
     rate_limit=None,
     debug=False,
     skip_validation=False,
@@ -130,3 +133,61 @@ def make_w3(
     w3.eth.attach_methods({"trace_block": _trace_block})
 
     return w3
+
+
+def make_w3_ws(
+    chain: ChainId,
+    provider: RPC_PROVIDER | str = "default",
+    endpoint=None,
+    api_key="",
+    timeout=10,
+):
+    if provider == "custom":
+        if not endpoint:
+            raise ValueError("endpoint must be provided when provider is custom")
+    if isinstance(provider, str):
+        provider = RPC_PROVIDER(provider)
+    endpoint = WS_PROVIDERS[chain][provider].format(api_key)
+    return WSClient(chain, endpoint, timeout)
+
+
+class WSClient:
+    def __init__(self, chain: ChainId, w3_ws_endpoint, timeout=10):
+        self.chain = chain
+        self.w3_ws = w3_ws_endpoint
+        self.timeout = timeout
+
+    async def subscribe_new_pending_transactions(self, callback):
+        while True:
+            await self.subscribe("newPendingTransactions", callback)
+
+    async def subscribe_new_blocks(self, callback):
+        while True:
+            await self.subscribe("newHeads", callback)
+
+    async def subscribe_logs(self, callback):
+        while True:
+            await self.subscribe("logs", callback)
+
+    async def subscribe(self, subscribe_type, callback):
+        async with connect(self.w3_ws) as ws:
+            await ws.send(
+                json.dumps(
+                    {
+                        "jsonrpc": "2.0",
+                        "method": "eth_subscribe",
+                        "params": [subscribe_type],
+                        "id": 1,
+                    }
+                )
+            )
+            _ = await ws.recv()
+            while True:
+                try:
+                    response = await asyncio.wait_for(ws.recv(), timeout=self.timeout)
+                    # time.sleep(0.5)
+                    callback(response)
+
+                except Exception as e:
+                    logger.error(f"ws error: {e}")
+                    return
