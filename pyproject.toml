@@ -1,18 +1,17 @@
 [tool.poetry]
-name = "w3tools"
-version = "0.1.1"
-description = "w3tools is a Python library that provides a set of tools to enhance the development of Web3 applications"
 authors = ["wanger <wangereth@icloud.com>"]
-readme = "README.md"
+description = "w3tools is a Python library that provides a set of tools to enhance the development of Web3 applications"
 license = "MIT"
+name = "w3tools"
+readme = "README.md"
+version = "0.1.2"
 
 [tool.poetry.dependencies]
-python = "^3.10"
-web3 = "^6.19.0"
 loguru = "^0.7.2"
 pyrate-limiter = "^3.6.1"
-
+python = "^3.10"
+web3 = "^6.19.0"
 
 [build-system]
-requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
