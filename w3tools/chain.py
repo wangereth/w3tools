@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from enum import IntEnum
+from typing import Any
 
 from eth_typing import ChecksumAddress
 from web3 import Web3
@@ -97,7 +98,7 @@ class ChainId(IntEnum):
     ARB_NOVA = 42170
     CELO = 42220
     OASIS = 42262
-    AVALANCHE = 43114
+    AVAX = 43114
     REI = 47805
     REICHAIN = 55555
     LINEA = 59144
@@ -128,6 +129,10 @@ class Chain:
     native_token_name: str
     native_token_symbol: str
     weth: ChecksumAddress
+    usdt: ChecksumAddress
+
+    def __getitem__(self, key: str) -> Any:
+        return getattr(self, key)
 
 
 CHAIN_INFO = {
@@ -138,6 +143,7 @@ CHAIN_INFO = {
         native_token_name="Ether",
         native_token_symbol="ETH",
         weth=Web3.to_checksum_address("0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"),
+        usdt=Web3.to_checksum_address("0xdac17f958d2ee523a2206206994597c13d831ec7"),
     ),
     ChainId.BSC: Chain(
         chain_id=ChainId.BSC,
@@ -146,5 +152,6 @@ CHAIN_INFO = {
         native_token_name="BNB",
         native_token_symbol="BNB",
         weth=Web3.to_checksum_address("0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c"),
+        usdt=Web3.to_checksum_address("0x55d398326f99059ff775485246999027b3197955"),
     ),
 }

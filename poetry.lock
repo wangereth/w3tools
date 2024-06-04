@@ -272,6 +272,20 @@ files = [
 ]
 
 [[package]]
+name = "cacheout"
+version = "0.16.0"
+description = "A caching library for Python"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "cacheout-0.16.0-py3-none-any.whl", hash = "sha256:1a52d9aa8b1e9720d8453b061348f15795578231f9ec4ad376fec49e717d0ed8"},
+    {file = "cacheout-0.16.0.tar.gz", hash = "sha256:ee264897cbaa089ae5f406da11952697d99fa7f3583cfab69fe8a00ff8e1952d"},
+]
+
+[package.extras]
+dev = ["black", "build", "coverage", "docformatter", "flake8", "flake8-black", "flake8-bugbear", "flake8-isort", "furo", "importlib-metadata (<5)", "invoke", "isort", "mypy", "pylint", "pytest", "pytest-asyncio", "pytest-cov", "sphinx", "sphinx-autodoc-typehints", "tox", "twine", "wheel"]
+
+[[package]]
 name = "certifi"
 version = "2024.2.2"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -1786,4 +1800,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "ada359ee887a86e572b06201af3be412bd94ca6a89bc3ba5b9eb307678e213db"
+content-hash = "9d71e47be18a91fb30c9984c8fef252cc1e10c74feb2fd8e0b563e2bf8f23f1c"

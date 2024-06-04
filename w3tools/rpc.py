@@ -10,6 +10,7 @@ class RPC_PROVIDER(Enum):
     CHAINBASE = "chainbase"
     DEFAULT = "default"
     QUICKNODE = "quicknode"
+    ANVIL = "anvil"
 
     def __missing__(cls, key):
         if isinstance(key, str):
@@ -28,6 +29,8 @@ HTTP_PROVIDERS = {
     ChainId.BSC: {
         RPC_PROVIDER.DEFAULT: "https://bsc.llamarpc.com",
         RPC_PROVIDER.CHAINBASE: "https://bsc-mainnet.s.chainbase.online/v1/{}",
+        RPC_PROVIDER.LOCAL: "http://localhost:8545",
+        RPC_PROVIDER.ANVIL: "http://localhost:8545",
     },
     ChainId.ARB: {
         RPC_PROVIDER.DEFAULT: "https://arbitrum.llamarpc.com",
@@ -46,12 +49,14 @@ WS_PROVIDERS = {
         RPC_PROVIDER.DEFAULT: "wss://eth.llamarpc.com",
         RPC_PROVIDER.INFURA: "wss://mainnet.infura.io/ws/v3/{}",
         RPC_PROVIDER.ALCHEMY: "wss://eth-mainnet.ws.alchemyapi.io/v2/{}",
-        RPC_PROVIDER.CHAINBASE: "wss://ethereum-mainnet.s.chainbase.online/ws/v1/{}",
+        RPC_PROVIDER.CHAINBASE: "wss://ethereum-mainnet.s.chainbase.online/v1/{}",
         RPC_PROVIDER.QUICKNODE: "wss://fittest-summer-pool.quiknode.pro/{}",
     },
     ChainId.BSC: {
         RPC_PROVIDER.DEFAULT: "wss://bsc.llamarpc.com",
-        RPC_PROVIDER.CHAINBASE: "wss://bsc-mainnet.s.chainbase.online/ws/v1/{}",
+        RPC_PROVIDER.LOCAL: "ws://localhost:8546",
+        RPC_PROVIDER.ANVIL: "ws://localhost:8545",  # for anvil
+        RPC_PROVIDER.CHAINBASE: "wss://bsc-mainnet.s.chainbase.online/v1/{}",
     },
     ChainId.ARB: {
         RPC_PROVIDER.DEFAULT: "wss://arbitrum.llamarpc.com",

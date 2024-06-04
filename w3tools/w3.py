@@ -103,29 +103,6 @@ def make_w3(
 
         w3.middleware_onion.inject(rate_limit_middleware, layer=0)
 
-    # add custom method
-    def result_formatter(method, module):
-        def formatter(res):
-            return apply_list_to_array_formatter(receipt_formatter)(res)
-
-        return compose(formatter)
-
-    def request_formatter(params):
-        def formatter(param):
-            if type(param[0]) == int:
-                return [hex(param[0])]
-            return param
-
-        return compose(formatter)
-
-    _get_block_receipts = Method(
-        "eth_getBlockReceipts",
-        mungers=[default_root_munger],
-        request_formatters=request_formatter,
-        result_formatters=result_formatter,
-    )
-    w3.eth.attach_methods({"get_block_receipts": _get_block_receipts})
-
     _trace_block = Method(
         "debug_traceBlockByNumber",
         mungers=[default_root_munger],
