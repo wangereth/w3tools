@@ -20,6 +20,7 @@ class RPC_PROVIDER(Enum):
 HTTP_PROVIDERS = {
     ChainId.ETH: {
         RPC_PROVIDER.LOCAL: "http://localhost:8545",
+        RPC_PROVIDER.ANVIL: "http://localhost:8545",
         RPC_PROVIDER.DEFAULT: "https://eth.llamarpc.com",
         RPC_PROVIDER.INFURA: "https://mainnet.infura.io/v3/{}",
         RPC_PROVIDER.ALCHEMY: "https://eth-mainnet.alchemyapi.io/v2/{}",
@@ -46,6 +47,7 @@ HTTP_PROVIDERS = {
 WS_PROVIDERS = {
     ChainId.ETH: {
         RPC_PROVIDER.LOCAL: "ws://localhost:8546",
+        RPC_PROVIDER.ANVIL: "ws://localhost:8545",
         RPC_PROVIDER.DEFAULT: "wss://eth.llamarpc.com",
         RPC_PROVIDER.INFURA: "wss://mainnet.infura.io/ws/v3/{}",
         RPC_PROVIDER.ALCHEMY: "wss://eth-mainnet.ws.alchemyapi.io/v2/{}",
