@@ -55,8 +55,11 @@ class TX:
     ## txdata
     @property
     def txdata(self):
-        if self._txdata is None:
-            self._txdata = self.w3.eth.get_transaction(self.txhash)
+        try:
+            if self._txdata is None:
+                self._txdata = self.w3.eth.get_transaction(self.txhash)
+        except Exception as e:
+            logger.error(f"get txdata failed: {e}, txhash: {self.txhash}")
         return self._txdata
 
     ## receipt
@@ -87,7 +90,7 @@ class TX:
                 return res
             except Exception as e:
                 logger.error(
-                    f"get calls from debug_traceTransaction failed: {e}, the {i+1} time"
+                    f"get calls from debug_traceTransaction failed: {e}, the {i+1} time, res: {res}"
                 )
                 time.sleep(0.5)
         return {"result": {"calls": []}}
