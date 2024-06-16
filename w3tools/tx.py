@@ -77,7 +77,7 @@ class TX:
     def trace(self):
         if self._trace:
             return self._trace
-        for i in range(3):
+        for i in range(1):
             try:
                 res = self.w3.provider.make_request(
                     "debug_traceTransaction",
